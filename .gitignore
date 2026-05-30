@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# Uncomment if data files are too large to commit:
+# data/processed/*.npy
+# data/forecasts/*.npy

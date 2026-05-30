@@ -1,0 +1,7 @@
+# Pin pymgrid to the EXACT version you used — the repo will not run otherwise.
+pymgrid==<FILL_IN>
+numpy==<FILL_IN>
+pandas==<FILL_IN>
+pvlib==<FILL_IN>
+torch==<FILL_IN>
+matplotlib==<FILL_IN>
