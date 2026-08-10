@@ -14,16 +14,12 @@ Managing uncertainty in solar generation is critical to continuously meet demand
 |---|---|
 | `01_data_and_sizing/` | Notebook that builds the aligned 2020 weather/load dataset and sizes the microgrid (PV capacity, battery sweep against LPSP). Includes the hourly RL weather file, the Qaraoun load profile, and the PV series. |
 | `02_forecaster/` | TCN notebook: data cleaning and quality control, physics-informed clear-sky features, training, evaluation against the persistence baseline, and generation of the year-long clear-sky-index prediction lookup (`tcn_kt_predictions_2020.npy`). Trained model in `TCN_Model/`. |
-| `03_reinforcement_learning/` | `TD3.ipynb` (proposed controller) and `PPO.ipynb` (benchmark). Both scripts contain the code for the forecast-augmented agent and baseline as well as the pymgrid environment wrapper, reward, evaluation script, and randomized kt test. Trained checkpoints in `Models/`. |
-| `docs/` | Quality-control flag definitions for the weather station data. |
+| `03_reinforcement_learning/` | `TD3.ipynb` (proposed controller) and `PPO.ipynb` (benchmark). Both scripts contain the code for the forecast-augmented agent and baseline as well as the pymgrid environment wrapper, reward, evaluation script, and randomized kt test. Trained checkpoints in `Models/`, including all 24hr models. |
+
 
 ## Run order
 
-1. **`01_data_and_sizing/01_data_and_sizing.ipynb`** — produces the aligned hourly dataset and the sized microgrid configuration.
-2. **`02_forecaster/02_forecaster.ipynb`** — trains/evaluates the TCN and writes `tcn_kt_predictions_2020.npy`, the lookup table the RL wrapper reads at runtime.
-3. **`03_reinforcement_learning/TD3.ipynb`** and **`PPO.ipynb`** — build the pymgrid environment, train with and without the forecast across horizons H = 1–24 h, and run the evaluation and diagnostic tests.
-
-Intermediate outputs needed by later stages are committed, so each notebook can also be run standalone.
+Each notebook can also be run standalone.
 
 ## Data
 
