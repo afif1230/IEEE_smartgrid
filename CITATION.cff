@@ -1,7 +1,0 @@
-cff-version: 1.2.0
-title: TCN-RL for Off-Grid Microgrids
-authors:
-  - family-names: El Bsat
-    given-names: Afif
-message: "If you use this code, please cite the paper."
-# Add DOI / journal reference once available.
