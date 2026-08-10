@@ -33,7 +33,7 @@ Each notebook can also be run standalone.
 pip install -r requirements.txt
 ```
 
-Key dependencies: `pymgrid`, `pvlib`, `torch`, `numpy`, `pandas`. The pymgrid version is pinned — the environment wrapper depends on its module API.
+Key dependencies: `pymgrid`, `pvlib`, `torch`, `numpy`, `pandas`. 
 
 ## Citation
 
