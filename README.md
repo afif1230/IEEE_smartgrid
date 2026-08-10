@@ -13,7 +13,7 @@ Managing uncertainty in solar generation is critical to continuously meet demand
 | Folder | Contents |
 |---|---|
 | `01_data_and_sizing/` | Notebook that builds the aligned 2020 weather/load dataset and sizes the microgrid (PV capacity, battery sweep against LPSP). Includes the hourly RL weather file, the Qaraoun load profile, and the PV series. |
-| `02_forecaster/` | TCN notebook: data cleaning and QC, physics-informed clear-sky features, training, evaluation against the persistence baseline, and generation of the year-long clear-sky-index prediction lookup (`tcn_kt_predictions_2020.npy`). Trained model in `TCN_Model/`. |
+| `02_forecaster/` | TCN notebook: data cleaning and quality control, physics-informed clear-sky features, training, evaluation against the persistence baseline, and generation of the year-long clear-sky-index prediction lookup (`tcn_kt_predictions_2020.npy`). Trained model in `TCN_Model/`. |
 | `03_reinforcement_learning/` | `TD3.ipynb` (proposed controller) and `PPO.ipynb` (benchmark). Contains the pymgrid environment wrapper, reward, training and evaluation loops, the forecast-horizon sweep, and the diagnostic tests reported in the paper (randomized forecast input, sensitivity probe, advantage decomposition, auxiliary loss). Trained checkpoints in `Models/`. |
 | `docs/` | Quality-control flag definitions for the weather station data. |
 
