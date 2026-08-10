@@ -4,15 +4,17 @@ Code and data accompanying the paper:
 
 > A. El Bsat and N. Daher, "Physics-Informed TCN Predictive Control via Reinforcement Learning for Off-Grid Microgrid Energy Management," submitted to *IEEE Transactions on Smart Grid*.
 
-A physics-informed temporal convolutional network (TCN) forecasts the hourly clear-sky index $k_t$, and the forecast is appended to the observation vector of a TD3 agent dispatching a photovoltaic–battery–diesel off-grid microgrid. PPO is trained identically as an on-policy benchmark, and the paper analyzes why TD3 exploits the forecast while PPO does not.
+## Abstract
+
+Managing uncertainty in solar generation is critical to continuously meet demand while operating isolated microgrids. To that end, this work gives off-grid microgrid operators a forecast-aware dispatch policy that lowers unmet demand without added hardware, together with a criterion for which reinforcement learning (RL) algorithms can exploit solar forecast to make better dispatch decisions. We propose a forecast-augmented Twin Delayed Deep Deterministic Policy Gradient (TD3) controller for a photovoltaic-battery-diesel off-grid microgrid, in which a physics-informed temporal convolutional network (TCN) forecast of the hourly clear-sky index is integrated into the agent's observation vector. Under matched training conditions, the forecast substantially reduces TD3's unmet demand relative to its no-forecast baseline. To benchmark this result, an on-policy Proximal Policy Optimization (PPO) agent is identically trained and sees little comparable improvement. A randomized-input test confirms that PPO essentially ignores the forecast, where replacing it with uniform noise increases unmet demand by only 3.5% for PPO against 35.5% for TD3. A decomposition of PPO's actor update traces this insensitivity to the advantage, through which the forecast reaches the actor almost entirely as a shift common to each available action, and therefore contributes nothing to the expected policy gradient. An auxiliary-loss intervention that bypasses the advantage entirely restores forecast responsiveness, confirming the structural origin of the effect.
 
 ## Repository layout
 
 | Folder | Contents |
 |---|---|
 | `01_data_and_sizing/` | Notebook that builds the aligned 2020 weather/load dataset and sizes the microgrid (PV capacity, battery sweep against LPSP). Includes the hourly RL weather file, the Qaraoun load profile, and the tier-1 PV series. |
-| `02_forecaster/` | TCN notebook: data cleaning and QC, physics-informed clear-sky features, training, evaluation against the persistence baseline, and generation of the year-long $k_t$ prediction lookup (`tcn_kt_predictions_2020.npy`). Trained model in `TCN_Model/`. |
-| `03_reinforcement_learning/` | `TD3.ipynb` (proposed controller), `PPO.ipynb` (benchmark), and `Q_learning.ipynb` (discrete baseline). Contains the pymgrid environment wrapper, reward, training and evaluation loops, the forecast-horizon sweep, and the diagnostic tests reported in the paper (randomized forecast input, sensitivity probe, advantage decomposition, auxiliary loss). Trained checkpoints in `Models/`. |
+| `02_forecaster/` | TCN notebook: data cleaning and QC, physics-informed clear-sky features, training, evaluation against the persistence baseline, and generation of the year-long clear-sky-index prediction lookup (`tcn_kt_predictions_2020.npy`). Trained model in `TCN_Model/`. |
+| `03_reinforcement_learning/` | `TD3.ipynb` (proposed controller) and `PPO.ipynb` (benchmark). Contains the pymgrid environment wrapper, reward, training and evaluation loops, the forecast-horizon sweep, and the diagnostic tests reported in the paper (randomized forecast input, sensitivity probe, advantage decomposition, auxiliary loss). Trained checkpoints in `Models/`. |
 | `docs/` | Quality-control flag definitions for the weather station data. |
 
 ## Run order
@@ -39,7 +41,7 @@ Key dependencies: `pymgrid`, `pvlib`, `torch`, `numpy`, `pandas`. The pymgrid ve
 
 ## Citation
 
-If you use this code or data, please cite the paper (see `CITATION.cff`; DOI to be added upon publication).
+If you use this code or data, please cite the paper (DOI to be added upon publication).
 
 ## License
 
